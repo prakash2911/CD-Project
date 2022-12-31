@@ -26,8 +26,13 @@ class Session {
     http.Response response = await http.post(url, body: data, headers: headers);
     if(response.statusCode==200)
       EasyLoading.dismiss();
-    else
-      EasyLoading.showToast("Error",duration: Duration(seconds: 3),dismissOnTap: true,toastPosition: EasyLoadingToastPosition.bottom);
+    else {
+      EasyLoading.dismiss();
+      EasyLoading.showToast("Error",
+          duration: Duration(seconds: 3),
+          dismissOnTap: true,
+          toastPosition: EasyLoadingToastPosition.bottom);
+    }
     if (endPoint == "/logout") {
       headers = {"Content-Type": "application/json"};
       SharedPreferences prefs = await SharedPreferences.getInstance();
